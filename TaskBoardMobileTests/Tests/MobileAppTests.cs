@@ -29,8 +29,11 @@ namespace TaskBoardMobileTests.Tests
 
             Thread.Sleep(10000);
 
-            var firstElementTitle = screen.ElementTaskTitle.First().Text;
-            Assert.AreEqual(newTaskTitle, firstElementTitle);
+            //var firstElementTitle = screen.ElementTaskTitle.First().Text;
+            //Assert.AreEqual(newTaskTitle, firstElementTitle);
+
+            var tasks = screen.GetAllTasks();
+            Assert.That(tasks.Contains(newTaskTitle));
         }
     }
 }

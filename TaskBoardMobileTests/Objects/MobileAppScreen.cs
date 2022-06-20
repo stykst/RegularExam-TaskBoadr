@@ -48,5 +48,12 @@ namespace TaskBoardMobileTests.Objects
             TextBoxAddNewTaskTitle.SendKeys(text);
             ButtonCreate.Click();
         }
+        public string[] GetAllTasks()
+        {
+            var tasks = ElementTaskTitle
+                .Select(t => t.Text)
+                .ToArray();
+            return tasks;
+        }
     }
 }
