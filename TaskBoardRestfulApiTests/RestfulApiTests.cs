@@ -25,22 +25,12 @@ namespace TaskBoardRestfulApiTests
             // Act
             var response = client.Execute(request);
             var tasks = JsonSerializer.Deserialize<List<TaskBoard>>(response.Content);
-            var boards = JsonSerializer.Deserialize<List<Board>>(response.Content);
 
             // Assert
             Assert.IsNotNull(response.Content);
             Assert.IsTrue(tasks.Count > 0);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-
-            foreach (var board in boards)
-            {
-                var boardName = board.name;
-                if (boardName == "Done")
-                {
-                    Assert.AreEqual("Project skeleton", tasks.First().title);
-                    break;
-                }
-            }
+            Assert.AreEqual("Project skeleton", tasks.First().title);
         }
 
         [Test]

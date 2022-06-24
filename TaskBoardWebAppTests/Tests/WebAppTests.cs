@@ -11,6 +11,7 @@ namespace TaskBoardWebAppTests.Tests
             var page = new WebAppTaskBoardPage(driver);
             page.Open();
 
+            var isBoardFound = false;
             var boards = page.ListOfBoards;
             foreach (var board in boards)
             {
@@ -18,11 +19,17 @@ namespace TaskBoardWebAppTests.Tests
                     .FindElement(By.CssSelector("h1")).Text;
                 if (boardName == "Done")
                 {
+                    isBoardFound = true;
                     var taskTitle = board
                         .FindElement(By.CssSelector("table > tbody > tr > td")).Text;
                     Assert.AreEqual("Project skeleton", taskTitle);
                     break;
                 }
+            }
+
+            if (isBoardFound == false)
+            {
+                Assert.Fail("The Board is not found!");
             }
         }
 
