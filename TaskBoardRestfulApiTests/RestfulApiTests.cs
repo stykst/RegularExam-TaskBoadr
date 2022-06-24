@@ -30,7 +30,22 @@ namespace TaskBoardRestfulApiTests
             Assert.IsNotNull(response.Content);
             Assert.IsTrue(tasks.Count > 0);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("Project skeleton", tasks.First().title);
+
+            var isBoardFound = false;
+            foreach (var task in tasks)
+            {
+                if (task.board.name == "Done")
+                {
+                    isBoardFound = true;
+                    Assert.AreEqual("Project skeleton", task.title);
+                    break;
+                }
+            }
+
+            if (isBoardFound == false)
+            {
+                Assert.Fail("The Board is not found!");
+            }
         }
 
         [Test]
