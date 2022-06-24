@@ -6,7 +6,7 @@ namespace TaskBoardMobileTests.Tests
     public class MobileAppBaseTest
     {
         private const string AppiumServerUri = "http://[::1]:4723/wd/hub";
-        private const string AppPath = @"C:\taskboard-androidclient.apk";
+        private const string AppPath = @"D:\StartApps\taskboard-androidclient.apk";
         protected AndroidDriver<AndroidElement> driver;
 
         [SetUp]
